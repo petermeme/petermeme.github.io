@@ -263,29 +263,83 @@ footer {
 }
 
 /* --- Mobile Responsiveness --- */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        height: auto;
-        padding: 15px 0;
+    /* Navbar Toggle Styling */
+    .nav-toggler {
+        display: block;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
     }
 
-    .nav-links {
-        margin-top: 15px;
-        flex-direction: column;
+    .nav-toggler span, 
+    .nav-toggler span::before, 
+    .nav-toggler span::after {
+        content: "";
+        display: block;
+        background: var(--primary-color);
+        height: 3px;
         width: 100%;
+        position: absolute;
+        transition: var(--transition);
+    }
+
+    .nav-toggler span { top: 13px; }
+    .nav-toggler span::before { top: -8px; }
+    .nav-toggler span::after { top: 8px; }
+
+    /* Hide Checkbox */
+    #nav-check { display: none; }
+
+    /* Show/Hide Menu Logic */
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    #nav-check:checked ~ .nav-links {
+        height: 280px; /* Adjust based on your number of links */
+        padding: 20px 0;
     }
 
     .nav-links li {
-        margin: 10px 0;
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
     }
-    
-    .contact-info {
-        flex-direction: column;
-        gap: 15px;
+
+    .nav-links li:last-child {
+        margin-top: 10px;
+    }
+
+    /* Hero Refinements */
+    .hero {
+        height: 80vh; /* Slightly shorter on mobile */
+        padding: 0 15px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* Scaled down for readability */
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .btn-primary {
+        width: 100%; /* Full width button is easier to tap */
+        max-width: 300px;
     }
 }
