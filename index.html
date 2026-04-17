@@ -1,129 +1,1324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acai | Marine Survey & Inspection Services</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACAI — Independent Testing & Inspection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --navy: #0b1e3d;
+    --navy-deep: #071428;
+    --navy-mid: #162e55;
+    --gold: #c8960a;
+    --gold-light: #f0b429;
+    --gold-pale: #fef3c7;
+    --slate: #64748b;
+    --offwhite: #f8f7f4;
+    --border: rgba(11,30,61,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .serif { font-family: 'IBM Plex Serif', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* NAV */
+  nav {
+    background: var(--navy-deep);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(200,150,10,0.25);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+  }
+  .logo span { color: var(--gold-light); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    cursor: pointer;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: #fff;
+    border-bottom-color: var(--gold-light);
+  }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy-deep) !important;
+    padding: 0.5rem 1.4rem !important;
+    border-bottom: none !important;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* PAGES */
+  .page { display: none; animation: fadeIn 0.35s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* HERO */
+  .hero {
+    background: var(--navy-mid);
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1800');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(200,150,10,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,150,10,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+  .hero h1 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.15;
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 0.85rem 2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(200,150,10,0.2);
+  }
+  .stats-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; }
+  .section-body {
+    color: var(--slate);
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* HOME: WHY ACAI */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+    background: var(--border);
+  }
+  .why-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+  .why-card:hover { background: var(--offwhite); }
+  .why-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+  .why-card h3 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .why-card p {
+    color: var(--slate);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* HOME: SERVICES TEASER */
+  .services-teaser {
+    background: var(--offwhite);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .services-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .service-list { list-style: none; margin-top: 2rem; }
+  .service-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .service-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .big-quote {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+
+  /* HOME: CLIENTS */
+  .clients-strip {
+    background: var(--navy-deep);
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(200,150,10,0.2);
+  }
+  .clients-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .clients-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .clients-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .client-name {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  /* SERVICES PAGE */
+  .services-hero {
+    background: var(--navy);
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 400px;
+    height: 400px;
+    border: 60px solid rgba(200,150,10,0.06);
+    border-radius: 50%;
+  }
+  .services-hero::after {
+    content: '';
+    position: absolute;
+    right: 50px;
+    bottom: -80px;
+    width: 250px;
+    height: 250px;
+    border: 40px solid rgba(200,150,10,0.04);
+    border-radius: 50%;
+  }
+  .services-hero h1 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: #fff;
+    max-width: 700px;
+    line-height: 1.2;
+    position: relative;
+  }
+  .services-hero p {
+    color: rgba(255,255,255,0.5);
+    margin-top: 1rem;
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.75;
+    font-weight: 300;
+    position: relative;
+  }
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: #fff;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 4rem;
+    font-weight: 500;
+    color: rgba(11,30,61,0.04);
+    line-height: 1;
+  }
+  .service-card h3 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.75rem;
+    display: inline-block;
+  }
+  .service-card ul { list-style: none; margin-top: 1.25rem; }
+  .service-card ul li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: #374151;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .service-card ul li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.55rem;
+  }
+  .service-card p.desc {
+    color: var(--slate);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  /* Partners section */
+  .partners-strip {
+    background: var(--offwhite);
+    border-top: 1px solid var(--border);
+    padding: 4rem 2rem;
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .partner-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .partner-name {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .partner-role {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .partner-desc {
+    color: var(--slate);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+
+  /* ABOUT PAGE */
+  .about-hero {
+    background: var(--navy-mid);
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-hero h1 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: #fff;
+    max-width: 680px;
+    line-height: 1.2;
+  }
+  .about-hero h1 em { font-style: italic; color: var(--gold-light); }
+  .about-hero p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    max-width: 540px;
+    line-height: 1.8;
+    margin-top: 1.25rem;
+    font-weight: 300;
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .value-item {
+    border-left: 3px solid var(--gold);
+    padding-left: 1.25rem;
+  }
+  .value-item h4 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .value-item p {
+    color: var(--slate);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .mission-block {
+    background: var(--navy);
+    color: #fff;
+    padding: 4rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission-block::after {
+    content: '"';
+    position: absolute;
+    right: 2rem;
+    bottom: -2rem;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 12rem;
+    color: rgba(200,150,10,0.08);
+    line-height: 1;
+  }
+  .mission-block blockquote {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    position: relative;
+  }
+  .mission-block cite {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-top: 1.5rem;
+  }
+
+  /* CONTACT PAGE */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 0;
+    min-height: 80vh;
+  }
+  .contact-left {
+    background: var(--navy);
+    padding: 5rem 3rem;
+    color: #fff;
+  }
+  .contact-left h2 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .contact-left h2 em { font-style: italic; color: var(--gold-light); }
+  .contact-left p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  .contact-info { list-style: none; }
+  .contact-info li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .contact-info li .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 80px;
+    padding-top: 2px;
+  }
+  .contact-right {
+    background: var(--offwhite);
+    padding: 5rem 3rem;
+  }
+  .contact-right h3 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .contact-right p.sub {
+    color: var(--slate);
+    font-size: 0.88rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select { cursor: pointer; }
+  .btn-submit {
+    width: 100%;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--gold); color: var(--navy-deep); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(200,150,10,0.2);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  .footer-logo {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-logo span { color: var(--gold-light); }
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    max-width: 220px;
+    line-height: 1.6;
+  }
+  .footer-links h5 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+  .footer-links a {
+    display: block;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--navy-mid);
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(200,150,10,0.2);
+  }
+  .cta-band-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+  .cta-band h3 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  .cta-band h3 em { font-style: italic; color: var(--gold-light); }
+  .cta-band p { color: rgba(255,255,255,0.45); font-size: 0.9rem; margin-top: 0.4rem; font-weight: 300; }
+
+  @media (max-width: 768px) {
+    .stats-bar-inner { grid-template-columns: repeat(2,1fr); }
+    .why-grid { grid-template-columns: 1fr; }
+    .services-split { grid-template-columns: 1fr; gap: 2rem; }
+    .service-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; }
+    .cta-band-inner { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container nav-container">
-    <a href="#" class="logo">ACAI</a>
-    
-    <input type="checkbox" id="nav-check">
-    <label for="nav-check" class="nav-toggler">
-        <span></span>
-    </label>
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">ACAI<span>.</span></div>
+    <div class="nav-links">
+      <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+      <a onclick="showPage('services')" id="nav-services">Services</a>
+      <a onclick="showPage('about')" id="nav-about">About</a>
+      <a onclick="showPage('contact')" id="nav-contact" class="nav-cta">Partner With Us</a>
+    </div>
+  </div>
+</nav>
 
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact" class="btn-nav">Contact Us</a></li>
-    </ul>
-</div>
-    </nav>
+<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+<div id="page-home" class="page active">
 
-    <header id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1>Reliable Independent Inspections & Marine Survey Services</h1>
-            <p>Ensuring quality, safety, and compliance across your supply chain.</p>
-            <a href="#services" class="btn-primary">Explore Our Services</a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Independent Testing & Inspection — East Africa</div>
+      <h1>Local <em>expertise</em>,<br>world-class<br>standards.</h1>
+      <p>ACAI delivers rigorous testing, inspection, and verification services to global certification bodies and regional trade players — with precision at local speed.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('services')">Our Capabilities</button>
+        <button class="btn-outline" onclick="showPage('contact')">Sub-Contracting Inquiry</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item">
+        <div class="stat-number">24h</div>
+        <div class="stat-label">Report Turnaround</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Independent Integrity</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">ISO</div>
+        <div class="stat-label">Standards-Aligned</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">EA</div>
+        <div class="stat-label">Regional Coverage</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why ACAI -->
+  <section style="background:#fff; padding: 6rem 2rem;">
+    <div class="container">
+      <div class="section-eyebrow">Why ACAI</div>
+      <h2 class="section-title">The <em>trusted local arm</em><br>of global TIC standards.</h2>
+      <p class="section-body">The world's largest inspection bodies need reliable, auditable sub-contractors on the ground. ACAI fills that gap — with local knowledge, international methodology, and an unyielding commitment to integrity.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">01</div>
+          <h3>Operational Independence</h3>
+          <p>We operate with zero commercial interest in the cargo or trade outcomes. Our reports reflect fact — nothing more, nothing less.</p>
         </div>
-    </header>
-
-    <section id="about" class="section-padding bg-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Who We Are</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="about-content">
-                <p><strong>Acai</strong> is a premier independent inspection and Marine Survey Services Provider. We specialize in mitigating risk and ensuring accuracy for logistics operations worldwide. From warehouse audits to vehicle inspections, our team ensures your cargo is handled with the utmost diligence.</p>
-            </div>
+        <div class="why-card">
+          <div class="why-icon">02</div>
+          <h3>International Methodology</h3>
+          <p>All inspections follow internationally recognised protocols (ISO/IEC 17020, ASTM, etc.) ensuring our certificates are universally accepted.</p>
         </div>
-    </section>
-
-    
-
-    <section id="services" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <div class="underline"></div>
-                <p>Comprehensive solutions for your logistical needs.</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-car-side"></i>
-                    </div>
-                    <h3>Vehicle Inspection</h3>
-                    <p>Complete Vehicle Inspection Services for Certificate of Conformity (COC). We ensure all vehicles meet regulatory standards before shipment.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-ship"></i>
-                    </div>
-                    <h3>Supervision Services</h3>
-                    <p>On-site supervision to guarantee safe handling during critical operations:</p>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Loading</li>
-                        <li><i class="fa-solid fa-check"></i> Offloading / Discharging</li>
-                        <li><i class="fa-solid fa-check"></i> Stuffing</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-boxes-stacked"></i>
-                    </div>
-                    <h3>Stock Inspection</h3>
-                    <p>Accurate verification of inventory levels and condition assessment to give you full visibility of your assets.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-warehouse"></i>
-                    </div>
-                    <h3>Due Diligence</h3>
-                    <p>Comprehensive Warehouse Audits. We assess facility conditions, security, and operational standards to minimize storage risks.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fa-solid fa-clipboard-list"></i>
-                    </div>
-                    <h3>Tally Services</h3>
-                    <p>Precise cargo counting and record-keeping during loading and discharging to prevent discrepancies and claims.</p>
-                </div>
-            </div>
+        <div class="why-card">
+          <div class="why-icon">03</div>
+          <h3>Regional Agility</h3>
+          <p>Our inspectors are embedded across East Africa — we mobilise faster, understand local logistics, and know port & customs intricacies.</p>
         </div>
-    </section>
-
-    <section id="contact" class="section-padding bg-dark">
-        <div class="container contact-container">
-            <div class="contact-text">
-                <h2>Get in Touch</h2>
-                <p>Ready to streamline your logistics? Contact Acai today for a quote.</p>
-                <div class="contact-info">
-                    <p><i class="fa-solid fa-envelope"></i> info@acai-logistics.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</p>
-                    <p><i class="fa-solid fa-location-dot"></i> Port Industrial Area, Logistics City</p>
-                </div>
-            </div>
+        <div class="why-card">
+          <div class="why-icon">04</div>
+          <h3>Precision Reporting</h3>
+          <p>Detailed, audit-ready documentation delivered within 24 hours of inspection completion — structured to your principal's format.</p>
         </div>
-    </section>
+        <div class="why-card">
+          <div class="why-icon">05</div>
+          <h3>Scalable Capacity</h3>
+          <p>From single-lot inspections to long-term sub-contracting arrangements, we scale to your volume with consistent quality.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">06</div>
+          <h3>Principal-Aligned</h3>
+          <p>We adopt your operating procedures, report formats, and branding requirements — operating as a seamless extension of your team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2024 Acai Logistics. All Rights Reserved.</p>
-    </footer>
+  <!-- Services Teaser -->
+  <section class="services-teaser">
+    <div class="container">
+      <div class="services-split">
+        <div>
+          <div class="section-eyebrow">What We Do</div>
+          <h2 class="section-title">Testing &<br><em>Inspection</em><br>capabilities.</h2>
+          <ul class="service-list">
+            <li>Pre-Shipment Inspection (PSI)</li>
+            <li>Container Loading Supervision</li>
+            <li>Warehouse & Inventory Audits</li>
+            <li>Marine & Draft Surveys</li>
+            <li>Sampling & Laboratory Coordination</li>
+            <li>Commodity Grading & Certification</li>
+            <li>Factory & Social Audits</li>
+          </ul>
+          <button class="btn-primary" style="margin-top:2rem;" onclick="showPage('services')">View All Services</button>
+        </div>
+        <div>
+          <p class="big-quote">"Acai was designed for the gap the giants can't fill — local execution, international accountability."</p>
+          <div style="margin-top:3rem; background:#fff; padding:2rem; border:1px solid var(--border);">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Sub-Contracting Model</div>
+            <p style="color:var(--slate); font-size:0.88rem; line-height:1.75; font-weight:300;">We work as an authorised local arm for global TIC principals carrying out ground operations while they manage client relationships and issue final certificates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Partners / Principals -->
+ <!--  <div class="clients-strip">
+    <div class="clients-strip-inner">
+      <p class="clients-label">Designed to support principals like</p>
+      <div class="clients-row">
+        <span class="client-name">Bureau Veritas</span>
+        <span class="client-name">SGS</span>
+        <span class="client-name">Cotecna</span>
+        <span class="client-name">Intertek</span>
+        <span class="client-name">BIVAC</span>
+        <span class="client-name">Geo-Chem</span>
+      </div>
+    </div>
+  </div>
+-->
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <div>
+        <h3>Ready to <em>partner</em>?</h3>
+        <p>Tell us about your inspection scope and let's build a working arrangement.</p>
+      </div>
+      <button class="btn-primary" onclick="showPage('contact')">Start a Conversation</button>
+    </div>
+  </div>
+
+</div><!-- /home -->
+
+
+<!-- ═══════════════════ SERVICES PAGE ═══════════════════ -->
+<div id="page-services" class="page">
+
+  <div class="services-hero">
+    <div class="container">
+      <div class="section-eyebrow" style="color:var(--gold-light);">Our Capabilities</div>
+      <h1>Testing, Inspection<br>& Certification Services</h1>
+      <p>Structured around the international TIC methodology — every service we offer is designed to meet the standards expected by global certification principals and local regulators alike.</p>
+    </div>
+  </div>
+
+  <section style="background:#fff; padding:5rem 2rem;">
+    <div class="container">
+      <div class="service-grid">
+
+        <div class="service-card" data-num="01">
+          <h3>Inspection Services</h3>
+          <p class="desc">On-site, independent verification across the full trade lifecycle — from factory floor to port discharge.</p>
+          <ul>
+            <li>Pre-Shipment Inspection (PSI) — quality & quantity verification before cargo departs</li>
+            <li>Container Loading Supervision (CLS) — real-time monitoring of packing operations</li>
+            <li>Warehouse & Inventory Audits — stock count verification and condition assessment</li>
+            <li>Factory & Social Audits — compliance review of production facilities</li>
+            <li>Marine & Draft Surveys — vessel stability and cargo quantification at port</li>
+            <li>Discharge Supervision — quantity & condition verification at receiving end</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-num="02">
+          <h3>Testing & Sampling</h3>
+          <p class="desc">Representative, traceable sampling and analytical coordination for commodities requiring chemical or physical characterisation.</p>
+          <ul>
+            <li>Representative Sampling & Sealing — per ISO / ASTM / commodity-specific standards</li>
+            <li>On-site Quality Verification — visual and physical assessment of goods</li>
+            <li>Laboratory Coordination — liaison with accredited labs for chemical analysis</li>
+            <li>Commodity Grading — agricultural, mineral, and manufactured goods</li>
+            <li>Sample Custody Chain — tamper-evident, traceable sample management</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-num="03">
+          <h3>Verification & Certification Support</h3>
+          <p class="desc">Acting as the authorised local inspection body under major TIC principals, enabling global certificate issuance from local data.</p>
+          <ul>
+            <li>One-off specialist inspections on principal instruction</li>
+            <!-- <li>Sub-contracting arrangements with BV, SGS, Cotecna, Intertek & others</li>            
+            <li>Conformity Assessment — pre-export product conformity checks</li> -->
+            <li>Standards Compliance Verification — ISO, EAC regulatory requirements</li>
+            <li>Trade Finance Support — inspection reports accepted by banks & insurers</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-num="04">
+          <h3>Reporting & Documentation</h3>
+          <p class="desc">Accurate, audit-ready paperwork delivered fast — formatted to your principal's specifications or regulatory requirements.</p>
+          <ul>
+            <li>Inspection Certificates — internationally formatted, signatory-ready</li>
+            <li>Survey Reports — detailed narrative and photographic records</li>
+            <li>Non-Conformance Reports (NCR) — for disputed or failed inspections</li>
+            <li>24-Hour Turnaround — standard on all routine inspections</li>
+            <li>Secure digital delivery — encrypted, client-portal ready</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Commodities -->
+  <section class="partners-strip">
+    <div class="container">
+      <div class="section-eyebrow">Commodities We Cover</div>
+      <h2 class="section-title">From farm gate<br>to <em>discharge port.</em></h2>
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-name">Agricultural</div>
+          <div class="partner-role">Sector</div>
+          <p class="partner-desc">Coffee, tea, grain, pulses, oilseeds, and processed food products. Grading, sampling, and PSI for export compliance.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-name">Industrial</div>
+          <div class="partner-role">Sector</div>
+          <p class="partner-desc">Manufactured goods, steel and construction materials, chemicals and fertilisers — factory audits through to container loading.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-name">Minerals & Energy</div>
+          <div class="partner-role">Sector</div>
+          <p class="partner-desc">Coal, ores, and petroleum derivatives. Draft surveys, weighing, sampling, and discharge supervision at East African ports.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <div>
+        <h3>Need a <em>specialist</em> service?</h3>
+        <p>Describe your inspection scope and we will confirm availability within 24 hours.</p>
+      </div>
+      <button class="btn-primary" onclick="showPage('contact')">Discuss Your Requirements</button>
+    </div>
+  </div>
+
+</div><!-- /services -->
+
+
+<!-- ═══════════════════ ABOUT PAGE ═══════════════════ -->
+<div id="page-about" class="page">
+
+  <div class="about-hero">
+    <div class="container">
+      <div class="section-eyebrow" style="color:var(--gold-light);">Who We Are</div>
+      <h1>An <em>independent</em> inspection<br>company built for<br>East Africa.</h1>
+      <p>ACAI was founded with a clear purpose: to close the operational gap between global TIC principals and the ground-level precision that African trade demands. We are local inspectors with international discipline.</p>
+    </div>
+  </div>
+
+  <section style="padding:6rem 2rem; background:#fff;">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="about-content-grid">
+        <div>
+          <div class="section-eyebrow">Our Story</div>
+          <h2 class="section-title">Built on the<br>ground, <em>not</em><br>a boardroom.</h2>
+          <p style="color:var(--slate); font-size:0.95rem; line-height:1.85; font-weight:300; margin-bottom:1.5rem;">ACAI emerged from a simple observation: the world's best testing and inspection companies need qualified, trustworthy local teams to execute their mandates in East Africa. The operational infrastructure had to follow international standards, yet be nimble enough to function at port, at the warehouse, and at the farm gate.</p>
+          <p style="color:var(--slate); font-size:0.95rem; line-height:1.85; font-weight:300;">We are that team. Our founders came from senior TIC industry roles and built ACAI specifically to support sub-contracting mandates from global principals, while also offering direct inspection services to exporters, importers, and financiers who need independent verification.</p>
+        </div>
+        <div>
+          <div class="section-eyebrow">Our Values</div>
+          <h2 class="section-title">What we<br>stand for.</h2>
+          <div class="values-grid">
+            <div class="value-item">
+              <h4>Independence</h4>
+              <p>No commercial interest in trade outcomes. Our integrity is our only product.</p>
+            </div>
+            <div class="value-item">
+              <h4>Precision</h4>
+              <p>Every observation, measurement, and report reflects the facts on the ground — exactly.</p>
+            </div>
+            <div class="value-item">
+              <h4>Speed</h4>
+              <p>Trade doesn't wait. We mobilise fast and deliver documentation within 24 hours.</p>
+            </div>
+            <div class="value-item">
+              <h4>Accountability</h4>
+              <p>Our inspectors sign their work. We stand behind every certificate we issue.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-block">
+        <blockquote>
+          "To provide testing, inspection, and verification services that enable trade with confidence — across East Africa, to the world."
+        </blockquote>
+        <cite>— ACAI Mission Statement</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team/Structure -->
+  <section style="padding:5rem 2rem; background:var(--offwhite); border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="section-eyebrow">Our Structure</div>
+      <h2 class="section-title">Inspection-first,<br><em>built to scale.</em></h2>
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-name">Field Inspectors</div>
+          <div class="partner-role">Core Team</div>
+          <p class="partner-desc">Trained, certified inspectors embedded across Kenya, Tanzania, Uganda and Ethiopia — ready to mobilise on short notice.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-name">Technical Office</div>
+          <div class="partner-role">Reporting & QC</div>
+          <p class="partner-desc">Dedicated review team that checks every field report before issuance — ensuring accuracy, completeness, and format compliance.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-name">Principals Desk</div>
+          <div class="partner-role">Coordination</div>
+          <p class="partner-desc">A single point of contact for each principal we work with — managing instructions, scheduling, and documentation flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <div>
+        <h3>Want to know <em>more</em>?</h3>
+        <p>We're happy to share our credentials, inspector CVs, and operating procedures on request.</p>
+      </div>
+      <button class="btn-primary" onclick="showPage('contact')">Get In Touch</button>
+    </div>
+  </div>
+
+</div><!-- /about -->
+
+
+<!-- ═══════════════════ CONTACT PAGE ═══════════════════ -->
+<div id="page-contact" class="page">
+
+  <div class="contact-layout">
+    <!-- Left Panel -->
+    <div class="contact-left">
+      <div class="section-eyebrow" style="color:var(--gold-light);">Partner With ACAI</div>
+      <h2>Let's discuss<br>your <em>inspection</em><br>requirements.</h2>
+      <p>Whether you're a global certification body looking for a reliable local sub-contractor, or a trader seeking independent verification — we're ready to engage.</p>
+
+      <ul class="contact-info">
+        <li>
+          <span class="label">Location</span>
+          <span>Dar Es Salaam, Tanzania<br><span style="color:rgba(255,255,255,0.35);font-size:0.82rem;">Regional coverage: EA & Horn of Africa</span></span>
+        </li>
+        <li>
+          <span class="label">Email</span>
+          <span>acai3rdltd@gmail.com</span>
+        </li>
+        <li>
+          <span class="label">Phone</span>
+          <span>+255 741 496 584</span>
+        </li>
+        <li>
+          <span class="label">Response</span>
+          <span>We respond to all inquiries within one business day.</span>
+        </li>
+      </ul>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.08);">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:1rem;">Existing Principals</div>
+        <p style="color:rgba(255,255,255,0.4); font-size:0.82rem; line-height:1.7; font-weight:300;">If you already work with us and need to raise a field instruction or order, please use your designated principal contact. Contact details on file.</p>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="contact-right">
+      <h3>Submit an Inquiry</h3>
+      <p class="sub">Complete the form and our team will respond within one working day.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" placeholder="Your company">
+        </div>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@company.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+254 ...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Inquiry Type</label>
+        <select>
+          <option value="">Select type...</option>
+          <option>Sub-Contracting Arrangement</option>
+          <option>One-off / Ad-hoc Inspection</option>
+          <option>Long-term Principal Partnership</option>
+          <option>Direct Client Inspection</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Commodity / Cargo Type</label>
+        <input type="text" placeholder="e.g. Coffee, Steel, Petroleum products...">
+      </div>
+      <div class="form-group">
+        <label>Inspection Location / Port</label>
+        <input type="text" placeholder="e.g. Mombasa, Dar es Salaam, Nairobi ICD">
+      </div>
+      <div class="form-group">
+        <label>Message / Scope of Work</label>
+        <textarea placeholder="Describe your inspection requirements, volumes, timelines, and any specific standards to be applied..."></textarea>
+      </div>
+      <button class="btn-submit">Submit Inquiry →</button>
+    </div>
+  </div>
+
+</div><!-- /contact -->
+
+
+<!-- FOOTER (shown on all pages) -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">ACAI<span>.</span></div>
+      <p class="footer-tagline">Independent Testing & Inspection — East Africa. Precision, integrity, and speed — every time.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Navigation</h5>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('services')">Services</a>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('contact')">Partner With Us</a>
+    </div>
+    <div class="footer-links">
+      <h5>Services</h5>
+      <a onclick="showPage('services')">Inspection Services</a>
+      <a onclick="showPage('services')">Testing & Sampling</a>
+      <a onclick="showPage('services')">Certification Support</a>
+      <a onclick="showPage('services')">Reporting & Documentation</a>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <a>acai3rdltd@gmail.com</a>
+      <a>+255 741 496 584</a>
+      <a>Dar Es Salaam, Tanzania</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ACAI Ltd. All rights reserved.</span>
+    <span>Independent Testing & Inspection — East Africa</span>
+  </div>
+</footer>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name)?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Fix about grid on mobile
+  const aboutGrid = document.querySelector('.about-content-grid');
+  if (aboutGrid && window.innerWidth < 768) {
+    aboutGrid.style.gridTemplateColumns = '1fr';
+    aboutGrid.style.gap = '3rem';
+  }
+</script>
 </body>
 </html>
